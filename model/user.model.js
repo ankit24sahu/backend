@@ -1,6 +1,6 @@
 import mongoose, {Schema, models} from "mongoose";
-import { JsonWebTokenError } from "jsonwebtoken";
-import { decodeBase64 } from "bcryptjs";
+import { jwt } from "jsonwebtoken";
+import { bcrypt } from "bcryptjs"; // THIS ERROR BECAUSE I USE BCRYPTKS NOT BCRYPT
 const userSchema = new Schema (
     {
         usename:{
@@ -42,7 +42,7 @@ const userSchema = new Schema (
         watchHistory :[
             {
                 type:Schema.Types.ObjectId,
-                ref:"VIdeo"
+                ref:"Video"
             }
         ],
 
@@ -92,7 +92,7 @@ userSchema.method.generateRefreshToken=function(){                     return  j
     
 
     },
-    process.env.REFRESH_TOKEN_SECRETE,{
+    process.env.REFRESH_TOKEN,{
         expiresIn:process.env.REFRESH_TOKEN_EXPIRY
     }
 )}
