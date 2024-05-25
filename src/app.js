@@ -5,7 +5,7 @@ import cors from "cors"
 const app =express()
 app.use(cors({
     origin:process.env.CORS_ORIGIN,
-    credentials
+    credentials:true
     }))
 
     app.use(express.json({limit:"16kb"}))// this use for json res/req limit
