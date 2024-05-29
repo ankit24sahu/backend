@@ -1,6 +1,6 @@
-import mongoose, {Schema, models} from "mongoose";
-import { jwt } from "jsonwebtoken";
-import { bcrypt } from "bcryptjs"; // THIS ERROR BECAUSE I USE BCRYPTKS NOT BCRYPT
+import mongoose, {Schema} from "mongoose";
+import { jwt} from "../model/supportforjwt.js"
+//import bcrypt from 'bcryptjs'; // THIS ERROR BECAUSE I USE BCRYPTKS NOT BCRYPT
 const userSchema = new Schema (
     {
         usename:{
@@ -50,6 +50,9 @@ const userSchema = new Schema (
             type:String,// alway in striing pass
             required:true
         },
+        refreshToken:{
+            type:String
+        }
     },
     {
         timestamps:true
@@ -65,7 +68,11 @@ userSchema.pre("save",async function(next){
 userSchema.method.ispasswordCorrect=async function (password){
     return await bcrypt.compare (password,this.password) // code make use midd for mongo and check password
 
-}
+ }
+
+ userSchema.methods.isPasswordCorrect = async function (password) {
+     return await bcrypt.compare(password, this.password);
+ };
 
 
 // jwt is beerer token jo token bejega vo data lega
@@ -96,4 +103,6 @@ userSchema.method.generateRefreshToken=function(){                     return  j
         expiresIn:process.env.REFRESH_TOKEN_EXPIRY
     }
 )}
-export const User=mongoose.model("User",userSchema)
+ const User=mongoose.model("User",userSchema)
+
+ export default User

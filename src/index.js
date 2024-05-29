@@ -10,7 +10,7 @@ dotenv.config({
 
 connection( )// the async in db also give then and catch
 .then( app.listen(process.env.PORT || 8000 ,( )=>{
-    console.log(` servwer started${process.env.PORT}`);
+    console.log(` server started at${process.env.PORT}`);
     app.on("error",(error)=>{console.log("error of app on",error );})
 }))
 .catch( (err)=>{

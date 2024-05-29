@@ -1,6 +1,5 @@
 import {v2 as cloudinary } from "cloudinary";
-import fs from fs
-
+import fs from "fs"
 
 
 cloudinary.config({ 
@@ -12,7 +11,7 @@ cloudinary.config({
 
 const uploadcloadnary= async (localfile ) =>{
     try {//file uploaf
-        if(!localfile) return "file not found"
+        if(!localfile) return null,"not found locally cloud"
         const respond = await cloudinary.uploader.upload(localfile,{
             resource_type:"auto"// all type of media upload imge,video ect
 
@@ -26,4 +25,4 @@ const uploadcloadnary= async (localfile ) =>{
     }
 }
 
-export {uploadcloadnary}
+export  default uploadcloadnary

@@ -1,19 +1,24 @@
-const asynhandler = ( reqpromise)=> {
-    Promise.resolve(reqpromise(req,res,next)).catch((err)=>{console.log("erro from reqhandler",err);})
+// //  const asynhandler = ( reqpromise)=> {return (req,res,next)=>
 
-} 
+// //    Promise.resolve(reqpromise (req,res,next)).catch((err)=> next(err))
 
-
-// const asynhand= (fn)=>{
-// async (req,res,next) =>{try {
-//     await fn(req,res,next)
-// } catch (error) {
-//     res.status(error.code ||500).json({
-//         success:"fasle",
-//         msg:"erro message"
-//     })
-// }
-// }}
+// //  }
+// // asyncHandler.js
+// export const asyncHandler = fn => (req, res, next) => {
+//     return Promise.resolve(fn(req, res, next)).catch(next);
+// };
 
 
-export  default asynhandler
+// //  const asynhandler= (fn)=>{
+// //  async (req,res,next) =>{try {
+// //      await fn(req,res,next)
+// //  } catch (error) {
+// //      res.status(error.code ||500).json({
+// //          success:"fasle",
+// //          msg:"erro message"
+// //      })
+// //  }
+// //  }}
+
+
+// export   {asyncHandler}
